@@ -3,6 +3,7 @@ package gestorBoda;
 import java.util.ArrayList;
 
 public class Comensal extends DatosPersonales{
+	//Ya en github|||||||||||||||
 	
 	ArrayList<Comensal> vetados =new ArrayList<Comensal>();
 	static ArrayList<Comensal> acompannantesNvo= new ArrayList<Comensal>() ;
@@ -15,6 +16,7 @@ public class Comensal extends DatosPersonales{
 		super(nombre, apellidos, edad, alergias);
 		Invitante(invitante);
 		setRol();
+		
 	}
 
 	//Esta funcion asigna a los novios su rol,o añade a la lista de novio invitante

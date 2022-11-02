@@ -21,6 +21,7 @@ public class Main {
 		//Generamos vetados y acompañantes
 		
 		comensales.get(40).annadirAcompannante(comensales.get(1));
+		comensales.get(40).annadirAcompannante(comensales.get(2));
 		comensales.get(41).annadirAcompannante(comensales.get(1));
 		System.out.println(comensales.get(1).rol);
 		//Falta hacer enemigos y amigos;
