@@ -1,42 +1,42 @@
-Juan;Perez;16;No;Novio
-Pedro;Fernandez;16;No;Novio
-Jose Luis;Garcia;16;No;Novio
-Roberto;Perez;16;No;Novio
-Alfonso;Murcia;16;No;Novio
-Gratiniano;del Pueblo;10;No;Novio
-Urraca;Olmos;10;No;Novio
-Maria;Robles;10;No;Novio
-Hidelfonso;Pardo;10;No;Novio
-Roberto;Perez;10;No;Novio
-Jaimito;Perez;10;No;Novio
-Genil;Perez;10;No;Novio
-Federico;Perez;10;No;Novio
-Wenceslao;Perez;16;No;Novio
-Darta¤anan;Perez;16;No;Novio
-Ricardo;Perez;16;No;Novio
-Marina;Perez;16;No;Novio
-Julian;Perez;16;No;Novio
-Rigoberto;Perez;16;No;Novio
-Angel Francisco;Perez;16;No;Novio
-Hercules;Perez;16;No;Novio
-Adolfo;Perez;16;No;Novio
-Dario;Perez;16;No;Novio
-Cecilio;Perez;16;No;Novio
-Dolores;Perez;16;No;Novio
-Maria;Perez;16;No;Novio
-Margarita;Perez;16;No;Novio
-Yolanda;Perez;16;No;Novio
-Trinidad;Perez;16;No;Novia
-Angel ;Perez;16;No;Novia
-Maria Angustias;Perez;46;No;Novia
-Fina;Perez;16;No;Novia
-Carmen;Perez;16;No;Novia
-Angela;Perez;16;No;Novia
-Tirana;Perez;10;No;Novia
-Sofia;Perez;16;No;Novia
-Alberto;Perez;16;No;Novia
-Maria Fuensanta;Perez;16;No;Novia
-Rick;Perez;16;No;Novia
-Jaime;Perez;16;No;Novia
-Mario;Perez;16;No;EsNovio
-Victor;Perez;16;No;EsNovia
+Juan;Perez;16;No;Novio;0;-1;-1
+Pedro;Fernandez;16;No;Novio;1;-1;2,30,9
+Jose Luis;Garcia;16;No;Novio;2;-1;1
+Roberto;Perez;16;No;Novio;3;-1;-1
+Alfonso;Murcia;16;No;Novio;4;-1;-1
+Gratiniano;del Pueblo;10;No;Novio;5;-1;-1
+Urraca;Olmos;10;No;Novio;6;-1;-1
+Maria;Robles;10;No;Novio;7;-1;-1
+Hidelfonso;Pardo;10;No;Novio;8;-1;-1
+Roberto;Perez;10;No;Novio;9;-1;1
+Jaimito;Perez;10;No;Novio;10;-1;-1
+Genil;Perez;10;No;Novio;11;-1;-1
+Federico;Perez;10;No;Novio;12;-1;-1
+Wenceslao;Perez;16;No;Novio;13;-1;-1
+Darta¤anan;Perez;16;No;Novio;14;-1;-1
+Ricardo;Perez;16;No;Novio;15;-1;-1
+Marina;Perez;16;No;Novio;16;-1;-1
+Julian;Perez;16;No;Novio;17;-1;-1
+Rigoberto;Perez;16;No;Novio;18;-1;-1
+Angel Francisco;Perez;16;No;Novio;19;-1;-1
+Hercules;Perez;16;No;Novio;20;-1;-1
+Adolfo;Perez;16;No;Novio;21;-1;-1
+Dario;Perez;16;No;Novio;22;-1;-1
+Cecilio;Perez;16;No;Novio;23;-1;-1
+Dolores;Perez;16;No;Novio;24;-1;-1
+Maria;Perez;16;No;Novio;25;-1;-1
+Margarita;Perez;16;No;Novio;26;-1;-1
+Yolanda;Perez;16;No;Novio;27;-1;-1
+Trinidad;Perez;16;No;Novia;28;-1;-1
+Angel ;Perez;16;No;Novia;29;-1;-1
+Maria Angustias;Perez;46;No;Novia;30;-1;1
+Fina;Perez;16;No;Novia;31;-1;-1
+Carmen;Perez;16;No;Novia;32;-1;-1
+Angela;Perez;16;No;Novia;33;-1;-1
+Tirana;Perez;10;No;Novia;34;-1;-1
+Sofia;Perez;16;No;Novia;35;-1;-1
+Alberto;Perez;16;No;Novia;36;-1;-1
+Maria Fuensanta;Perez;16;No;Novia;37;-1;-1
+Rick;Perez;16;No;Novia;38;-1;-1
+Jaime;Perez;16;No;Novia;39;-1;-1
+Mario;Perez;16;No;EsNovio;40;-1;-1
+Victor;Perez;16;No;EsNovia;41;-1;-1

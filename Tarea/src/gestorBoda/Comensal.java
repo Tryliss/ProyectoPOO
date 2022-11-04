@@ -3,21 +3,24 @@ package gestorBoda;
 import java.util.ArrayList;
 
 public class Comensal extends DatosPersonales{
-	//Ya en github|||||||||||||||
 	
-	ArrayList<Comensal> vetados =new ArrayList<Comensal>();
+	ArrayList<Integer> vetados =new ArrayList<Integer>();
 	static ArrayList<Comensal> acompannantesNvo= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> acompannantesNva= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
-	ArrayList<Comensal> acompannantes= new ArrayList<Comensal>() ;
+	ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
 	int rol=-2 ;
 	
-	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante) {
+	
+	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
 		super(nombre, apellidos, edad, alergias);
+		this.vetados=vetados;
+		this.vetados=vetados;
 		Invitante(invitante);
 		setRol();
 		
 	}
+
 
 	//Esta funcion asigna a los novios su rol,o añade a la lista de novio invitante
 	private void Invitante(String invitante) {
@@ -35,14 +38,6 @@ public class Comensal extends DatosPersonales{
 	}
 
 	private void setRol() {
-		//Los roles indican quien es la persona:
-		//0)Novios(Se define en en procedimento)
-		//1)Novios(Se define en el procedimento)
-		//2)Preferentes: Indica los que se sentaran en la mesa presidencial
-		//3)Invitados Novio: Indica quien ha invitado, se sobreecribe en caso de ser preferente o niño
-		//4)Invitados Novia: Indica quien ha invitado, se sobreecribe en caso de ser preferente o niño
-		//5)Niño:Años entre 2 y 12 años
-		//-1)Bebe:Menor de 2 años no ocupa silla
 		if(this.rol==0||this.rol==1){
 			return;
 		}
@@ -74,22 +69,17 @@ public class Comensal extends DatosPersonales{
 		}
 	}
 
-	public ArrayList<Comensal> getVetados() {
+	public ArrayList<Integer> getVetados() {
 		return vetados;
 	}
 
-	public ArrayList<Comensal> getAcompannantes() {
+	public ArrayList<Integer> getAcompannantes() {
 		return acompannantes;
 	}
 	
 	//Añadir y eliminar vetados
-	public void annadirAcompannante(Comensal comensal) {
-		if(this.rol==0||this.rol==1) {
-			preferente.add(comensal);
-			comensal.setRol();
-		}else{
-			acompannantes.add(comensal);
-		}
+	public void annadirAcompannante(Integer comensal) {
+		vetados.add(comensal);
 	}
 	public void eliminarAcompannante(Comensal comensal) {
 		if(this.rol==0||this.rol==1) {
@@ -100,7 +90,7 @@ public class Comensal extends DatosPersonales{
 		}
 	}
 	
-	public void annadirVetado(Comensal comensal) {
+	public void annadirVetado(Integer comensal) {
 		vetados.add(comensal);
 		
 	}

@@ -72,6 +72,10 @@ public class Asignador{
 		if(general.isEmpty()) {
 			general.add(cont,new General("Placeholder"));
 			general.get(cont).annadirComensales(comensal);
+			for(int i=1;i<=comensal.acompannantes.size();i++) {
+				general.get(cont).annadirComensales(asignados.get(comensal.acompannantes.get(i)));
+				
+				}
 			return;
 			
 		}else{
@@ -81,15 +85,18 @@ public class Asignador{
 					puntuacion=-1500;
 				}else {
 				for(Comensal comparado:mGeneral.comensalesMesa) {
+					if(comensal.vetados.contains(comparado.getIdentificador())||comparado.vetados.contains(comensal.getIdentificador())) {
+						puntuacion=puntuacion-100;
+					
+					}
+					
 					if(comparado.rol==comensal.rol) {
 						puntuacion++;
 					}
-					if(comensal.acompannantes.contains(comparado)||comparado.acompannantes.contains(comensal)) {
+					if(comensal.acompannantes.contains(comparado.getIdentificador())||comparado.acompannantes.contains(comensal.getIdentificador())) {
 						puntuacion=puntuacion+100;
 					}
-					if(comensal.vetados.contains(comparado)||comparado.vetados.contains(comensal)) {
-						puntuacion=puntuacion-100;
-					}
+					
 				}
 				
 			}
@@ -97,12 +104,12 @@ public class Asignador{
 			}
 			if(Collections.max(pesos)>=0) {
 				general.get(pesos.indexOf(Collections.max(pesos))).annadirComensales(comensal);
+
 			}else {
 				
 				general.add(cont,new General("Placeholder"));
 				general.get(cont).annadirComensales(comensal);
 				cont++;
-				
 			}
 			
 		}

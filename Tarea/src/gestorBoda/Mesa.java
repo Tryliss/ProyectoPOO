@@ -21,7 +21,7 @@ public abstract class Mesa {
 	}
 
 	public static void setComensalesT() {
-		Mesa.comensalesT = Mesa.comensalesT++;
+		comensalesT++;
 	}
 
 	public static int getSillasT() {

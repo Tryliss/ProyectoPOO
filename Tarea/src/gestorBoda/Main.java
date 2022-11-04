@@ -14,17 +14,22 @@ public class Main {
 		try (BufferedReader br = new BufferedReader(new FileReader("boda.csv"))) {
 			while ((line = br.readLine()) != null)   //returns a Boolean value  
 			{  
-			String[] comensal = line.split(splitBy);    // use comma as separator  
-			comensales.add(new Comensal(comensal[0], comensal[1], Integer.parseInt(comensal[2]), comensal[3], comensal[4]));
+			ArrayList<Integer> vetados= new ArrayList<Integer>();
+			ArrayList<Integer> acompannantes= new ArrayList<Integer>();
+			String[] comensal = line.split(splitBy);    // use comma as separator 
+			String[] vetado = comensal[6].split(",");
+			String[] acompannante = comensal[7].split(",");
+			for(String vet:vetado) {
+				vetados.add(Integer.parseInt(vet));
+			}
+			for(String aco:acompannante) {
+				acompannantes.add(Integer.parseInt(aco));
+			}
+			comensales.add(Integer.parseInt(comensal[5]),new Comensal(comensal[0], comensal[1], Integer.parseInt(comensal[2]), comensal[3], comensal[4],vetados,acompannantes));
 			}
 		}
-		//Generamos vetados y acompañantes
 		
-		comensales.get(40).annadirAcompannante(comensales.get(1));
-		comensales.get(40).annadirAcompannante(comensales.get(2));
-		comensales.get(41).annadirAcompannante(comensales.get(1));
-		System.out.println(comensales.get(1).rol);
-		//Falta hacer enemigos y amigos;
+		//Recorrer y mostrar
 		Asignador guau=new Asignador(comensales);
 		ArrayList<Mesa> perros=guau.Inicia();
 		for(Mesa perro:perros) {
@@ -36,5 +41,7 @@ public class Main {
 			System.out.println(pequeno.size()); 
 				
 		}
+		System.out.println( Mesa.getComensalesT());	
+		//Falta generar pdf
 		}   
 }
