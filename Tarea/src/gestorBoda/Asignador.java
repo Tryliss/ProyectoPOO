@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Asignador{
-	List<Comensal> asignados;
+	ArrayList<Comensal> asignados=new ArrayList<Comensal>();
 	//Solo puede haber una mesa presidencial
 	Presidencial presidencial= new Presidencial();
 	ArrayList<Ninnos> ninnos= new ArrayList<Ninnos>();
@@ -21,6 +21,7 @@ public class Asignador{
 			for(Comensal comensal: asignados) {
 				switch(comensal.rol) {
 				case -1:
+					break;
 				case  5:
 					asignaNinnos(comensal);
 					break;
@@ -35,9 +36,11 @@ public class Asignador{
 					break;
 				case  3:
 					asignaGeneral(comensal);
+					asignaAcommpanantes(comensal);
 					break;
 				case  4:
 					asignaGeneral(comensal);
+					asignaAcommpanantes(comensal);
 					break;
 				default:
 					break;
@@ -65,19 +68,23 @@ public class Asignador{
 		}
 	
 	}
+	private void asignaAcommpanantes(Comensal comensal) {
+		for(Integer i:comensal.getAcompannantes()) {
+			if(i!=-1) {
+			Comensal aux=asignados.get(i);
+			asignaGeneral(aux);
+			asignados.get(i).setRol(-2);
+			}
+		}
+		
+	}
 	private void asignaGeneral(Comensal comensal) {
 		int cont=general.size();
-		//Hacer con mapas¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
 		ArrayList<Integer> pesos = new ArrayList<Integer>();
 		if(general.isEmpty()) {
 			general.add(cont,new General("Placeholder"));
 			general.get(cont).annadirComensales(comensal);
-			for(int i=1;i<=comensal.acompannantes.size();i++) {
-				general.get(cont).annadirComensales(asignados.get(comensal.acompannantes.get(i)));
-				
-				}
 			return;
-			
 		}else{
 			for(General mGeneral: general) {
 				int puntuacion = 0;
@@ -113,6 +120,6 @@ public class Asignador{
 			}
 			
 		}
-		
+
 	}
 }

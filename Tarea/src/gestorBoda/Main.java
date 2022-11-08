@@ -17,14 +17,15 @@ public class Main {
 			ArrayList<Integer> vetados= new ArrayList<Integer>();
 			ArrayList<Integer> acompannantes= new ArrayList<Integer>();
 			String[] comensal = line.split(splitBy);    // use comma as separator 
-			String[] vetado = comensal[6].split(",");
-			String[] acompannante = comensal[7].split(",");
+			String[] vetado = comensal[6].split("[,]", 0);
+			String[] acompannante = comensal[7].split("[,]", 0);
 			for(String vet:vetado) {
 				vetados.add(Integer.parseInt(vet));
 			}
 			for(String aco:acompannante) {
 				acompannantes.add(Integer.parseInt(aco));
 			}
+			System.out.println(acompannante.length);
 			comensales.add(Integer.parseInt(comensal[5]),new Comensal(comensal[0], comensal[1], Integer.parseInt(comensal[2]), comensal[3], comensal[4],vetados,acompannantes));
 			}
 		}

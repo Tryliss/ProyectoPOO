@@ -15,7 +15,7 @@ public class Comensal extends DatosPersonales{
 	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
 		super(nombre, apellidos, edad, alergias);
 		this.vetados=vetados;
-		this.vetados=vetados;
+		this.acompannantes=acompannantes;
 		Invitante(invitante);
 		setRol();
 		
@@ -36,7 +36,9 @@ public class Comensal extends DatosPersonales{
 	public int getRol() {
 		return rol;
 	}
-
+	public void setRol(int rol) {
+		this.rol=rol;
+	}
 	private void setRol() {
 		if(this.rol==0||this.rol==1){
 			return;
@@ -79,7 +81,7 @@ public class Comensal extends DatosPersonales{
 	
 	//Añadir y eliminar vetados
 	public void annadirAcompannante(Integer comensal) {
-		vetados.add(comensal);
+		acompannantes.add(comensal);
 	}
 	public void eliminarAcompannante(Comensal comensal) {
 		if(this.rol==0||this.rol==1) {

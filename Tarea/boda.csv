@@ -1,6 +1,6 @@
 Juan;Perez;16;No;Novio;0;-1;-1
 Pedro;Fernandez;16;No;Novio;1;-1;2,30,9
-Jose Luis;Garcia;16;No;Novio;2;-1;1
+Jose Luis;Garcia;16;No;Novio;2;-1;30,1
 Roberto;Perez;16;No;Novio;3;-1;-1
 Alfonso;Murcia;16;No;Novio;4;-1;-1
 Gratiniano;del Pueblo;10;No;Novio;5;-1;-1
@@ -28,7 +28,7 @@ Margarita;Perez;16;No;Novio;26;-1;-1
 Yolanda;Perez;16;No;Novio;27;-1;-1
 Trinidad;Perez;16;No;Novia;28;-1;-1
 Angel ;Perez;16;No;Novia;29;-1;-1
-Maria Angustias;Perez;46;No;Novia;30;-1;1
+Maria Angustias;Perez;46;No;Novia;30;-1;2,1
 Fina;Perez;16;No;Novia;31;-1;-1
 Carmen;Perez;16;No;Novia;32;-1;-1
 Angela;Perez;16;No;Novia;33;-1;-1
