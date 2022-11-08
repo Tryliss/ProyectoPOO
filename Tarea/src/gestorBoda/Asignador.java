@@ -88,9 +88,6 @@ public class Asignador{
 		}else{
 			for(General mGeneral: general) {
 				int puntuacion = 0;
-				if(mGeneral.comensalesMesa.size()>12) {
-					puntuacion=-1500;
-				}else {
 				for(Comensal comparado:mGeneral.comensalesMesa) {
 					if(comensal.vetados.contains(comparado.getIdentificador())||comparado.vetados.contains(comensal.getIdentificador())) {
 						puntuacion=puntuacion-100;
@@ -103,8 +100,10 @@ public class Asignador{
 					if(comensal.acompannantes.contains(comparado.getIdentificador())||comparado.acompannantes.contains(comensal.getIdentificador())) {
 						puntuacion=puntuacion+100;
 					}
-					
-				}
+					if(mGeneral.comensalesMesa.size()>12||comensal.getAcompannantes().size()+mGeneral.comensalesMesa.size()>12) {
+						puntuacion=-1500;
+					}
+				
 				
 			}
 				pesos.add( puntuacion);

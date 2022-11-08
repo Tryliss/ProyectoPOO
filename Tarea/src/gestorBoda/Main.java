@@ -1,14 +1,15 @@
 package gestorBoda;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 	private static ArrayList<Comensal> comensales= new ArrayList<Comensal>();
-
-	public static void main(String[] args) throws IOException {
+	public static void leerFichero() throws FileNotFoundException, IOException {
 		String line = "";  
 		String splitBy = ";"; 
 		try (BufferedReader br = new BufferedReader(new FileReader("boda.csv"))) {
@@ -29,20 +30,38 @@ public class Main {
 			comensales.add(Integer.parseInt(comensal[5]),new Comensal(comensal[0], comensal[1], Integer.parseInt(comensal[2]), comensal[3], comensal[4],vetados,acompannantes));
 			}
 		}
-		
-		//Recorrer y mostrar
-		Asignador guau=new Asignador(comensales);
-		ArrayList<Mesa> perros=guau.Inicia();
-		for(Mesa perro:perros) {
-			System.out.println(perro.getClass().getSimpleName());
-			ArrayList<Comensal> pequeno=perro.comensalesMesa;
-			for(Comensal diminuto: pequeno) {
-				System.out.println(diminuto.getNombre()+" "+diminuto.getApellidos()); 
+	}
+	//Debug
+	public static void mostrarMesas() {
+		Asignador boda_1=new Asignador(comensales);
+		ArrayList<Mesa>boda_2=boda_1.Inicia();
+		for(Mesa boda_3:boda_2) {
+			System.out.println(boda_3.getClass().getSimpleName());
+			ArrayList<Comensal> boda_4=boda_3.comensalesMesa;
+			for(Comensal boda_5: boda_4) {
+				System.out.println(boda_5.getNombre()+" "+boda_5.getApellidos()); 
 			}
-			System.out.println(pequeno.size()); 
+			System.out.println(boda_4.size()); 
 				
 		}
-		System.out.println( Mesa.getComensalesT());	
-		//Falta generar pdf
+	}
+	public static void main(String[] args) throws IOException {
+		 Scanner sn = new Scanner(System.in);
+		 int opcion;
+		boolean salir=true;
+		while(salir!=false) {
+			System.out.println("Pulse: \n 1 Para Introducir datos \n 2 Para asignar y mostrar en pantalla \n 3 Para salir");
+			opcion = sn.nextInt();
+			switch(opcion) {
+			case 1:
+				leerFichero();
+				break;
+			case 2:
+				mostrarMesas();
+				break;
+			case 3:
+				salir=false;
+			}
 		}   
+	}
 }
