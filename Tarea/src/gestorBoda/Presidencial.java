@@ -18,7 +18,8 @@ public class Presidencial extends Mesa{
 
 	@Override
 	public void eliminarComensales(Comensal comensal) {
-		// TODO Auto-generated method stub
+				this.comensalesMesa.remove(comensal);
+				
 		
 	}
 

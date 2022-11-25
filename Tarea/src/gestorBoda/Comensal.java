@@ -9,7 +9,7 @@ public class Comensal extends DatosPersonales{
 	static ArrayList<Comensal> acompannantesNva= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
 	ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
-	int rol=-2 ;
+	Rol rol;
 	
 	
 	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
@@ -25,47 +25,47 @@ public class Comensal extends DatosPersonales{
 	//Esta funcion asigna a los novios su rol,o añade a la lista de novio invitante
 	private void Invitante(String invitante) {
 		switch(invitante) {
-		case "EsNovio": this.rol=0;
-		case "EsNovia": this.rol=1;
+		case "EsNovio": this.rol=Rol.NOVIO;
+		case "EsNovia": this.rol=Rol.NOVIA;
 		case "Novio":	acompannantesNvo.add(this);
 		case "Novia":	acompannantesNva.add(this);
 		}	
 	}
 
 	//Getters y Setters
-	public int getRol() {
+	public Rol getRol() {
 		return rol;
 	}
-	public void setRol(int rol) {
+	public void setRol(Rol rol) {
 		this.rol=rol;
 	}
 	private void setRol() {
-		if(this.rol==0||this.rol==1){
+		if(this.rol==Rol.NOVIO||this.rol==Rol.NOVIA){
 			return;
 		}
 		
 		if (this.getEdad()<2) {
-			this.rol=-1;
+			this.rol=Rol.BEBE;
 			return;
 		}
 		
 		if(this.getEdad()>2&&this.getEdad()<12) {
-			this.rol=5;
+			this.rol=Rol.NINNO;
 			return;
 		}
 		
 		if(preferente.contains(this)) {
-			this.rol=2;
+			this.rol=Rol.PREFERENTE;
 			return;
 		}
 		
 		if(acompannantesNvo.contains(this)) {
-			this.rol=3;
+			this.rol=Rol.INVNOVIO;
 			return;
 		}
 		
 		if(acompannantesNva.contains(this)) {
-			this.rol=4;
+			this.rol=Rol.INVNOVIA;
 			return;	
 			
 		}
@@ -83,20 +83,15 @@ public class Comensal extends DatosPersonales{
 	public void annadirAcompannante(Integer comensal) {
 		acompannantes.add(comensal);
 	}
-	public void eliminarAcompannante(Comensal comensal) {
-		if(this.rol==0||this.rol==1) {
-			preferente.remove(comensal);
-			comensal.setRol();
-		}else{
-			acompannantes.remove(comensal);
-		}
+	public void eliminarAcompannante(Integer comensal) {
+		acompannantes.remove(comensal);
 	}
 	
 	public void annadirVetado(Integer comensal) {
 		vetados.add(comensal);
 		
 	}
-	public void eliminarVetado(Comensal comensal) {
+	public void eliminarVetado(Integer comensal) {
 		vetados.remove(comensal);
 	}
 

@@ -5,47 +5,22 @@ import java.util.Collections;
 import java.util.List;
 
 public class Asignador{
-	ArrayList<Comensal> asignados=new ArrayList<Comensal>();
-	//Solo puede haber una mesa presidencial
-	Presidencial presidencial= new Presidencial();
-	ArrayList<Ninnos> ninnos= new ArrayList<Ninnos>();
-	ArrayList<General> general= new ArrayList<General>();
-	ArrayList<Mesa> completo= new ArrayList<Mesa>();
+	ArrayList<Comensal> asignados		=	new ArrayList<Comensal>();
+	Presidencial 		presidencial	= 	new Presidencial();//Solo puede haber una mesa presidencial
+	ArrayList<Ninnos> 	ninnos			= 	new ArrayList<Ninnos>();
+	ArrayList<General> 	general			= 	new ArrayList<General>();
+	ArrayList<Mesa> 	completo		= 	new ArrayList<Mesa>();
 
+	//Constructor
 	public Asignador(ArrayList<Comensal> asignados) {
 		this.asignados = asignados;
 	}
 	
-	public ArrayList<Mesa> Inicia() {
-		//Introduce a los asistentes en listas segun su rol
-			for(Comensal comensal: asignados) {
-				switch(comensal.rol) {
-				case -1:
-					break;
-				case  5:
-					asignaNinnos(comensal);
-					break;
-				case  0:
-					asignaPresidencial(comensal);
-					break;
-				case  1:
-					asignaPresidencial(comensal);
-					break;
-				case  2:
-					asignaPresidencial(comensal);
-					break;
-				case  3:
-					asignaGeneral(comensal);
-					asignaAcommpanantes(comensal);
-					break;
-				case  4:
-					asignaGeneral(comensal);
-					asignaAcommpanantes(comensal);
-					break;
-				default:
-					break;
-					
-			}
+	//Asigna y devuelve lista comensales y mesas
+	public ArrayList<Mesa> Asigna() {
+
+		for(Comensal comensal: asignados) {
+				determinarMesa(comensal);
 			
 		}
 			completo.addAll(general);
@@ -53,11 +28,32 @@ public class Asignador{
 			completo.addAll(ninnos);
 			return completo;
 	}
-
+	
+	//Metodo que determina la mesa a la que se asigna, y llama a la asignacion
+	private void determinarMesa(Comensal comensal) {
+		
+		if(comensal.rol==Rol.NINNO){
+			asignaNinnos(comensal);
+		}
+		
+		if(comensal.rol==Rol.NOVIO||comensal.rol==Rol.NOVIA||comensal.rol==Rol.PREFERENTE){
+			asignaPresidencial(comensal);
+		}
+		
+		if(comensal.rol==Rol.INVNOVIA||comensal.rol==Rol.INVNOVIO) {
+			asignaGeneral(comensal);
+			asignaAcommpanantes(comensal);
+		}
+		
+	}
+	
+	
+	//Asigna la mesa presencial
 	private void asignaPresidencial(Comensal comensal){
 		presidencial.annadirComensales(comensal);
 	}
 	
+	//Asigna niños
 	private void asignaNinnos(Comensal comensal){
 		int cont=0;
 		if(ninnos.isEmpty()||Mesa.maximo==ninnos.get(cont).comensalesMesa.size()) {
@@ -68,16 +64,21 @@ public class Asignador{
 		}
 	
 	}
+	
+	//Asigna acompañantes
 	private void asignaAcommpanantes(Comensal comensal) {
-		for(Integer i:comensal.getAcompannantes()) {
-			if(i!=-1) {
-			Comensal aux=asignados.get(i);
-			asignaGeneral(aux);
-			asignados.get(i).setRol(-2);
+		for(Integer acompannante:comensal.getAcompannantes()) {
+			if(acompannante!=-1) {
+			Comensal comensalAcompannate=asignados.get(acompannante);
+			asignaGeneral(comensalAcompannate);
+			asignados.get(acompannante).setRol(Rol.ASIGNADO);
 			}
-		}
-		
+		}	
 	}
+	
+	
+	//Asignacion a mesas generales mediante pesos de mesas 
+	
 	private void asignaGeneral(Comensal comensal) {
 		int cont=general.size();
 		ArrayList<Integer> pesos = new ArrayList<Integer>();
@@ -97,28 +98,26 @@ public class Asignador{
 					if(comparado.rol==comensal.rol) {
 						puntuacion++;
 					}
+					
 					if(comensal.acompannantes.contains(comparado.getIdentificador())||comparado.acompannantes.contains(comensal.getIdentificador())) {
 						puntuacion=puntuacion+100;
 					}
+					
 					if(mGeneral.comensalesMesa.size()>12||comensal.getAcompannantes().size()+mGeneral.comensalesMesa.size()>12) {
 						puntuacion=-1500;
 					}
-				
-				
-			}
-				pesos.add( puntuacion);
+				}
+				pesos.add(puntuacion);
 			}
 			if(Collections.max(pesos)>=0) {
 				general.get(pesos.indexOf(Collections.max(pesos))).annadirComensales(comensal);
 
-			}else {
-				
+			}else{
 				general.add(cont,new General("Placeholder"));
 				general.get(cont).annadirComensales(comensal);
 				cont++;
+				
 			}
-			
 		}
-
 	}
 }
