@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 	private static ArrayList<Comensal> comensales= new ArrayList<Comensal>();
-	private static Asignador boda_1;
+	private static Evento boda_1;
 	private static ArrayList<Mesa>boda_2;
 	//Debug
 	public static void mostrarMesas(ArrayList<Mesa> listaMesas) {
@@ -52,7 +52,8 @@ public class Main {
 					break;
 				case 3:
 					comensales=boda.getComensales();
-					boda_1=new Asignador(comensales);
+					//Singleton
+					boda_1=Evento.getInstance(comensales);
 					boda_2=boda_1.Asigna();
 					mostrarMesas(boda_2);
 					break;

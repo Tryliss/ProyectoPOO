@@ -4,17 +4,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Asignador{
+public class Evento{
+	//Sigleton
+	private static Evento instance;
+	
+	
 	ArrayList<Comensal> asignados		=	new ArrayList<Comensal>();
 	Presidencial 		presidencial	= 	new Presidencial();//Solo puede haber una mesa presidencial
 	ArrayList<Ninnos> 	ninnos			= 	new ArrayList<Ninnos>();
 	ArrayList<General> 	general			= 	new ArrayList<General>();
 	ArrayList<Mesa> 	completo		= 	new ArrayList<Mesa>();
 
-	//Constructor
-	public Asignador(ArrayList<Comensal> asignados) {
+	//Constructor Singleton
+	private Evento(ArrayList<Comensal> asignados) {
 		this.asignados = asignados;
 	}
+	
+	//
+	public static Evento getInstance(ArrayList<Comensal> asignados) {
+        if (instance == null) {
+            instance = new Evento(asignados);
+        }
+        return instance;
+    }
+	
+	
 	
 	//Asigna y devuelve lista comensales y mesas
 	public ArrayList<Mesa> Asigna() {

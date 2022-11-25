@@ -13,7 +13,9 @@ public class LeerFichero {
 	ArrayList<Comensal> comensales	= new ArrayList<Comensal>();
 	
 	public LeerFichero(String defecto) {
+		if(!defecto.isEmpty()) {
 		this.defecto = defecto;
+		}
 	}
 	
 	public void formalizar() throws IOException{
