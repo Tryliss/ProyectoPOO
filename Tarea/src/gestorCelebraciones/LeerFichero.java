@@ -1,4 +1,4 @@
-package gestorBoda;
+package gestorCelebraciones;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

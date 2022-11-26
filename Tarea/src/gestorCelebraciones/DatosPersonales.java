@@ -1,4 +1,4 @@
-package gestorBoda;
+package gestorCelebraciones;
 
 public class DatosPersonales {
 	private String nombre;

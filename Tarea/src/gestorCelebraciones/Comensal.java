@@ -1,4 +1,4 @@
-package gestorBoda;
+package gestorCelebraciones;
 
 import java.util.ArrayList;
 

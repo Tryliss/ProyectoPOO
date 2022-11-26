@@ -1,4 +1,4 @@
-package gestorBoda;
+package gestorCelebraciones;
 
 public class General extends Mesa{
 	static final int minimo=0; 

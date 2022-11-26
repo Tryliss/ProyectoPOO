@@ -1,4 +1,4 @@
-package gestorBoda;
+package gestorCelebraciones;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Main {
 				System.out.println("Tipo de mesa: "+mesa.getClass().getSimpleName());	
 			}
 			ArrayList<Comensal> listaComensales=mesa.comensalesMesa;
-			for(Comensal comensal: listaComensales) {
+			for(DatosPersonales comensal: listaComensales) {
 				System.out.println(comensal.getIdentificador()+": "+comensal.getNombre()+" "+comensal.getApellidos()); 
 			}
 			System.out.println(listaComensales.size()); 
