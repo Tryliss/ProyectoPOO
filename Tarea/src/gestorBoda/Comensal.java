@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class Comensal extends DatosPersonales{
 	
-	ArrayList<Integer> vetados =new ArrayList<Integer>();
+	
 	static ArrayList<Comensal> acompannantesNvo= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> acompannantesNva= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
 	ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
+	ArrayList<Integer> vetados =new ArrayList<Integer>();
 	Rol rol;
 	
 	

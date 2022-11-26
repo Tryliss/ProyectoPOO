@@ -1,16 +1,13 @@
 package gestorBoda;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 	private static ArrayList<Comensal> comensales= new ArrayList<Comensal>();
-	private static Evento boda_1;
-	private static ArrayList<Mesa>boda_2;
+	private static Evento evento;
+	private static ArrayList<Mesa>asistentesOrdenados;
 	//Debug
 	public static void mostrarMesas(ArrayList<Mesa> listaMesas) {
 		for(Mesa mesa:listaMesas) {
@@ -21,26 +18,28 @@ public class Main {
 			}
 			ArrayList<Comensal> listaComensales=mesa.comensalesMesa;
 			for(Comensal comensal: listaComensales) {
-				System.out.println(comensal.getNombre()+" "+comensal.getApellidos()); 
+				System.out.println(comensal.getIdentificador()+": "+comensal.getNombre()+" "+comensal.getApellidos()); 
 			}
 			System.out.println(listaComensales.size()); 
 				
 		}
 	}
 	public static void main(String[] args) {
-		 try (Scanner sn = new Scanner(System.in)) {
-			int opcion;
-			boolean salir=true;
+		try (Scanner sn = new Scanner(System.in)) {	
+		boolean salir=true;
 			LeerFichero boda = null;
 			while(salir!=false) {
 				System.out.println("Pulse: \n 1 Para Introducir datos de prueba \n 2 Para introducir archivo csv propio (Formato: Nombre;Apellidos;edad;alergias;indice;vetados;acompañantes) \n 3 Para asignar y mostrar en pantalla \n 4 Cambiar nombre de mesa");
-				opcion = sn.nextInt();
+				String opcion=sn.nextLine();
+				
 				switch(opcion) {
-				case 1:
+				case "0":
+					break;
+				case "1":
 					boda=new LeerFichero("boda.csv");
 					boda.formalizar();
 					break;
-				case 2:
+				case "2":
 					System.out.println("Introduce ruta sin comillas");
 					String opcion2 ="";
 					while(opcion2.isBlank()) {
@@ -50,14 +49,14 @@ public class Main {
 					boda=new LeerFichero(opcion2);
 					boda.formalizar();
 					break;
-				case 3:
+				case "3":
 					comensales=boda.getComensales();
 					//Singleton
-					boda_1=Evento.getInstance(comensales);
-					boda_2=boda_1.Asigna();
-					mostrarMesas(boda_2);
+					evento=Evento.getInstance(comensales);
+					asistentesOrdenados=evento.Asigna();
+					mostrarMesas(asistentesOrdenados);
 					break;
-				case 4:
+				case "4":
 					System.out.println("Introduce el numero de mesa cuyo nombre quieras cambiar:");
 					int indice=-1 ;
 					while(indice==-1) {
@@ -68,13 +67,19 @@ public class Main {
 					while(nombre.isBlank()) {
 					 nombre = sn.nextLine();
 					}
-					boda_2.get(indice).setLlaveMesa(nombre);
-					mostrarMesas(boda_2);
+					asistentesOrdenados.get(indice).setLlaveMesa(nombre);
+					mostrarMesas(asistentesOrdenados);
+					break;
+				default:
+					break;
 				}
+				
+				
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+			
+		}
+		
+		
 	}
 }
