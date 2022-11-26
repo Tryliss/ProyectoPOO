@@ -1,8 +1,9 @@
 package gestorCelebraciones;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
-import java.util.List;
+
 
 public class Evento{
 	//Sigleton
@@ -50,11 +51,11 @@ public class Evento{
 			asignaNinnos(comensal);
 		}
 		
-		if(comensal.rol==Rol.NOVIO||comensal.rol==Rol.NOVIA||comensal.rol==Rol.PREFERENTE){
+		if(comensal.rol==Rol.PROTAGONISTA1||comensal.rol==Rol.PROTAGONISTA2||comensal.rol==Rol.PREFERENTE){
 			asignaPresidencial(comensal);
 		}
 		
-		if(comensal.rol==Rol.INVNOVIA||comensal.rol==Rol.INVNOVIO) {
+		if(comensal.rol==Rol.INVPR2||comensal.rol==Rol.INVPR1) {
 			asignaGeneral(comensal);
 			asignaAcommpanantes(comensal);
 		}

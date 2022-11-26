@@ -1,7 +1,8 @@
 package gestorCelebraciones;
 
 import java.util.ArrayList;
-import java.util.List;
+
+
 
 public abstract class Mesa { 
 	static final int minimo=0; 

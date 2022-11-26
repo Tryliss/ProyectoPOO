@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Comensal extends DatosPersonales{
 	
 	
-	static ArrayList<Comensal> acompannantesNvo= new ArrayList<Comensal>() ;
-	static ArrayList<Comensal> acompannantesNva= new ArrayList<Comensal>() ;
+	static ArrayList<Comensal> acompannantesPr1= new ArrayList<Comensal>() ;
+	static ArrayList<Comensal> acompannantesPr2= new ArrayList<Comensal>() ;
 	static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
 	ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
 	ArrayList<Integer> vetados =new ArrayList<Integer>();
@@ -26,10 +26,10 @@ public class Comensal extends DatosPersonales{
 	//Esta funcion asigna a los novios su rol,o añade a la lista de novio invitante
 	private void Invitante(String invitante) {
 		switch(invitante) {
-		case "EsNovio": this.rol=Rol.NOVIO;
-		case "EsNovia": this.rol=Rol.NOVIA;
-		case "Novio":	acompannantesNvo.add(this);
-		case "Novia":	acompannantesNva.add(this);
+		case "EsNovio": this.rol=Rol.PROTAGONISTA1;
+		case "EsNovia": this.rol=Rol.PROTAGONISTA1;
+		case "Novio":	acompannantesPr1.add(this);
+		case "Novia":	acompannantesPr2.add(this);
 		}	
 	}
 
@@ -41,7 +41,7 @@ public class Comensal extends DatosPersonales{
 		this.rol=rol;
 	}
 	private void setRol() {
-		if(this.rol==Rol.NOVIO||this.rol==Rol.NOVIA){
+		if(this.rol==Rol.PROTAGONISTA1||this.rol==Rol.PROTAGONISTA2){
 			return;
 		}
 		
@@ -60,13 +60,13 @@ public class Comensal extends DatosPersonales{
 			return;
 		}
 		
-		if(acompannantesNvo.contains(this)) {
-			this.rol=Rol.INVNOVIO;
+		if(acompannantesPr1.contains(this)) {
+			this.rol=Rol.INVPR1;
 			return;
 		}
 		
-		if(acompannantesNva.contains(this)) {
-			this.rol=Rol.INVNOVIA;
+		if(acompannantesPr2.contains(this)) {
+			this.rol=Rol.INVPR2;
 			return;	
 			
 		}
