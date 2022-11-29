@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 /** Clase leer fichero */
 public class LeerFichero {
-	String defecto	=	"boda.csv";
-	String line 	=	"";  
-	String splitBy 	= 	";"; 
+	private String defecto	=	"boda.csv";
+	private String line 	=	"";  
+	private String splitBy 	= 	";"; 
 	ArrayList<Comensal> comensales	= new ArrayList<Comensal>();
 	
 	/** Constructor leer fichero */

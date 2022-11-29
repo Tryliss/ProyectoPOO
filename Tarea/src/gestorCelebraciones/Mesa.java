@@ -5,11 +5,10 @@ import java.util.ArrayList;
 
 /** Clase mesa */
 public abstract class Mesa { 
-	static final int minimo=0; 
-	static final int maximo=15;
-	static int comensalesT; 
-	static int sillasT; 
-	static int mesasT;
+
+	public static int comensalesT; 
+	public static int sillasT; 
+	public static int mesasT;
 	String llaveMesa;
 	ArrayList<Comensal> comensalesMesa= new ArrayList<Comensal>();
 
@@ -44,14 +43,6 @@ public abstract class Mesa {
 	public void setLlaveMesa(String llaveMesa) {
 		this.llaveMesa = llaveMesa;
 	}
-	/** Devuelve minimo por mesa */
-	public static int getMinimo() {
-		return minimo;
-	}
-	/** Devuelve maximo por mesa */
-	public static int getMaximo() {
-		return maximo;
-}
 	/** Metodo abstracto que añade comensales a una mesa */
 	public abstract void annadirComensales(Comensal comensal);
 	/** Metodo abstracto que elimina comensales a una mesa */

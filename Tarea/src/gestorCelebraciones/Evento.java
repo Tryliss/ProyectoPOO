@@ -77,7 +77,7 @@ public class Evento{
 	/**Asigna niños*/
 	private void asignaNinnos(Comensal comensal){
 		int cont=0;
-		if(ninnos.isEmpty()||Mesa.maximo==ninnos.get(cont).comensalesMesa.size()) {
+		if(ninnos.isEmpty()||Ninnos.maximo==ninnos.get(cont).comensalesMesa.size()) {
 			ninnos.add(cont,new Ninnos());
 			cont++;
 		}else {
