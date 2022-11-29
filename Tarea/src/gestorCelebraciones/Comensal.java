@@ -2,18 +2,24 @@ package gestorCelebraciones;
 
 import java.util.ArrayList;
 
+/** Clase comensal extiende datos personales */
 public class Comensal extends DatosPersonales{
 	
-	
+	/** Arraylist de los comensales invitados por el protagonista 1 */
 	public static ArrayList<Comensal> acompannantesPr1= new ArrayList<Comensal>() ;
+	/** Arraylist de los comensales invitados por el protagonista 2 */
 	public static ArrayList<Comensal> acompannantesPr2= new ArrayList<Comensal>() ;
+	/** Arraylist de los comensales que se sentaran en la mesa presidencial */
 	public static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
+	/** Arraylist de acompañantes */
 	public ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
+	/** Arraylist vetados */
 	public ArrayList<Integer> vetados =new ArrayList<Integer>();
+	/** Enumerado rol */
 	public Rol rol;
 	
-	
-	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
+	/** Constructor de comensal */
+	public Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
 		super(nombre, apellidos, edad, alergias);
 		this.vetados=vetados;
 		this.acompannantes=acompannantes;
@@ -23,7 +29,7 @@ public class Comensal extends DatosPersonales{
 	}
 
 
-	//Esta funcion asigna a los novios su rol,o añade a la lista de novio invitante
+	/**Funcion asigna a los protagonistas su rol,o añade a la lista de protagonista invitante */
 	private void Invitante(String invitante) {
 		switch(invitante) {
 		case "EsNovio": this.rol=Rol.PROTAGONISTA1;
@@ -33,13 +39,15 @@ public class Comensal extends DatosPersonales{
 		}	
 	}
 
-	//Getters y Setters
+	/** Devuelve el rol */
 	public Rol getRol() {
 		return rol;
 	}
+	/** Modifica el rol */
 	public void setRol(Rol rol) {
 		this.rol=rol;
 	}
+	/** Asigna el rol al comensal */
 	private void setRol() {
 		if(this.rol==Rol.PROTAGONISTA1||this.rol==Rol.PROTAGONISTA2){
 			return;
@@ -71,27 +79,29 @@ public class Comensal extends DatosPersonales{
 			
 		}
 	}
-
+	/** Devuelve lista vetados */
 	public ArrayList<Integer> getVetados() {
 		return vetados;
 	}
-
+	/** Devuelve lista acompañantes */
 	public ArrayList<Integer> getAcompannantes() {
 		return acompannantes;
 	}
 	
-	//Añadir y eliminar vetados
+	/** Añadir acompañante */
 	public void annadirAcompannante(Integer comensal) {
 		acompannantes.add(comensal);
 	}
+	/** Eliminar acompañante */
 	public void eliminarAcompannante(Integer comensal) {
 		acompannantes.remove(comensal);
 	}
-	
+	/** Añade vetados */
 	public void annadirVetado(Integer comensal) {
 		vetados.add(comensal);
 		
 	}
+	/** Eliminar vetados */
 	public void eliminarVetado(Integer comensal) {
 		vetados.remove(comensal);
 	}

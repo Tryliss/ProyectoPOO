@@ -4,34 +4,40 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 
-
+/** Clase evento con patron de diseño singleton */
 public class Evento{
-	//Sigleton
+	/** Singleton */
 	private static Evento instance;
 	
-	
+	/** Arraylist de comensales a asignar */
 	ArrayList<Comensal> asignados		=	new ArrayList<Comensal>();
-	Presidencial 		presidencial	= 	new Presidencial();//Solo puede haber una mesa presidencial
+	/** Mesa presidencial */
+	Presidencial 		presidencial	= 	new Presidencial();
+	/** Arraylist mesas niños */
 	ArrayList<Ninnos> 	ninnos			= 	new ArrayList<Ninnos>();
+	/** Arraylist mesas generales*/
 	ArrayList<General> 	general			= 	new ArrayList<General>();
+	/** Arraylist completo */
 	ArrayList<Mesa> 	completo		= 	new ArrayList<Mesa>();
 
-	//Constructor Singleton
+	/** Constructor privado por singleton */
 	private Evento(ArrayList<Comensal> asignados) {
 		this.asignados = asignados;
 	}
 	
-	//
+	/** "Constructor" Singleton */
 	public static Evento getInstance(ArrayList<Comensal> asignados) {
         if (instance == null) {
             instance = new Evento(asignados);
         }
+        
         return instance;
     }
 	
 	
 	
-	//Asigna y devuelve lista comensales y mesas
+	/**Asigna y devuelve lista comensales y mesas */
+	
 	public ArrayList<Mesa> Asigna() {
 
 		for(Comensal comensal: asignados) {
@@ -44,7 +50,7 @@ public class Evento{
 			return completo;
 	}
 	
-	//Metodo que determina la mesa a la que se asigna, y llama a la asignacion
+	/**Metodo que determina la mesa a la que se asigna, y llama a la asignacion */
 	private void determinarMesa(Comensal comensal) {
 		
 		if(comensal.rol==Rol.NINNO){
@@ -63,12 +69,12 @@ public class Evento{
 	}
 	
 	
-	//Asigna la mesa presencial
+	/**Asigna la mesa presencial*/
 	private void asignaPresidencial(Comensal comensal){
 		presidencial.annadirComensales(comensal);
 	}
 	
-	//Asigna niños
+	/**Asigna niños*/
 	private void asignaNinnos(Comensal comensal){
 		int cont=0;
 		if(ninnos.isEmpty()||Mesa.maximo==ninnos.get(cont).comensalesMesa.size()) {
@@ -80,7 +86,7 @@ public class Evento{
 	
 	}
 	
-	//Asigna acompañantes
+	/**Asigna acompañantes*/
 	private void asignaAcommpanantes(Comensal comensal) {
 		for(Integer acompannante:comensal.getAcompannantes()) {
 			if(acompannante!=-1) {
@@ -92,7 +98,7 @@ public class Evento{
 	}
 	
 	
-	//Asignacion a mesas generales mediante pesos de mesas 
+	/**Asignacion a mesas generales mediante pesos de mesas */
 	
 	private void asignaGeneral(Comensal comensal) {
 		int cont=general.size();

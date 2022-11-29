@@ -4,12 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/** Clase main */
 public class Main {
 	private static ArrayList<Comensal> comensales= new ArrayList<Comensal>();
 	private static Evento evento;
 	private static ArrayList<Mesa>asistentesOrdenados;
-	/** Recorre array y muestra mesas*/
+	//Debug
 	public static void mostrarMesas(ArrayList<Mesa> listaMesas) {
 		for(Mesa mesa:listaMesas) {
 			if(mesa.getClass().getSimpleName().contains("General")) {
@@ -25,7 +24,6 @@ public class Main {
 				
 		}
 	}
-	/** Main */
 	public static void main(String[] args) {
 		try (Scanner sn = new Scanner(System.in)) {	
 		boolean salir=true;

@@ -1,5 +1,6 @@
 package gestorCelebraciones;
 
+/** Clase datos personales */
 public class DatosPersonales {
 	private String nombre;
 	private String apellidos;
@@ -8,6 +9,7 @@ public class DatosPersonales {
 	private int identificador;
 	private static int contador;
 	
+
 	protected DatosPersonales(String nombre, String apellidos, int edad, String alergias) {
 		this.nombre 		= 	nombre;
 		this.apellidos 		= 	apellidos;

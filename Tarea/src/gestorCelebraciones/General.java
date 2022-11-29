@@ -1,11 +1,12 @@
 package gestorCelebraciones;
 
+/** Clase mesa general*/
 public class General extends Mesa{
 	static final int minimo=0; 
 	static final int maximo=15;
+	/** Constructor mesa general */
 	public General(String llaveMesa) {
 		super(llaveMesa);
-		// TODO Auto-generated constructor stub
 	}
 
 

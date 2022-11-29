@@ -6,18 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/** Clase leer fichero */
 public class LeerFichero {
 	String defecto	=	"boda.csv";
 	String line 	=	"";  
 	String splitBy 	= 	";"; 
 	ArrayList<Comensal> comensales	= new ArrayList<Comensal>();
 	
+	/** Constructor leer fichero */
 	public LeerFichero(String defecto) {
 		if(!defecto.isEmpty()) {
 		this.defecto = defecto;
 		}
 	}
 	
+	/** Funcion que convierte el csv a comensales */
 	public void formalizar() throws IOException{
 	try (BufferedReader br = new BufferedReader(new FileReader(defecto))) {
 		while ((line = br.readLine()) != null){
@@ -58,7 +61,7 @@ public class LeerFichero {
 		System.out.println("No se ha encontrado archivo en la direccion indicada");
 	}
 	}
-
+	/** Devuelve la lista de comensales generada */
 	public ArrayList<Comensal> getComensales() {
 		return comensales;
 	}
