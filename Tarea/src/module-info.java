@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author oiram
- *
- */
-module Tarea {
-}

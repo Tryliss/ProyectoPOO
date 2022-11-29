@@ -21,39 +21,24 @@ public class DatosPersonales {
 		return nombre;
 	}
 	
-	protected void setNombre(String nombre) {
-		this.nombre 		= 	nombre;
-	}
 	
 	protected String getApellidos() {
 		return apellidos;
 	}
 	
-	protected void setApellidos(String apellidos) {
-		this.apellidos 		= 	apellidos;
-	}
 	
 	protected int getEdad() {
 		return edad;
 	}
 	
-	protected void setEdad(int edad) {
-		this.edad 			= 	edad;
-	}
 	
 	protected String getAlergias() {
 		return alergias;
 	}
 	
-	protected void setAlergias(String alergias) {
-		this.alergias 		= 	alergias;
-	}
 	
 	public int getIdentificador() {
 		return identificador;
 	}
 	
-	protected void setIdentificador(int identificador) {
-		this.identificador 	= 	identificador;
-	}
 }

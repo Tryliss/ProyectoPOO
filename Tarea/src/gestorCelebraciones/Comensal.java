@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Comensal extends DatosPersonales{
 	
 	
-	static ArrayList<Comensal> acompannantesPr1= new ArrayList<Comensal>() ;
-	static ArrayList<Comensal> acompannantesPr2= new ArrayList<Comensal>() ;
-	static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
-	ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
-	ArrayList<Integer> vetados =new ArrayList<Integer>();
-	Rol rol;
+	public static ArrayList<Comensal> acompannantesPr1= new ArrayList<Comensal>() ;
+	public static ArrayList<Comensal> acompannantesPr2= new ArrayList<Comensal>() ;
+	public static ArrayList<Comensal> preferente= new ArrayList<Comensal>() ;
+	public ArrayList<Integer> acompannantes= new ArrayList<Integer>() ;
+	public ArrayList<Integer> vetados =new ArrayList<Integer>();
+	public Rol rol;
 	
 	
 	protected Comensal(String nombre, String apellidos, int edad, String alergias,String invitante,ArrayList<Integer> vetados,ArrayList<Integer> acompannantes) {
