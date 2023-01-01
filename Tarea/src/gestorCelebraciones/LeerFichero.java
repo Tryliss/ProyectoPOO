@@ -15,9 +15,10 @@ public class LeerFichero {
 	
 	/** Constructor leer fichero */
 	public LeerFichero(String defecto) {
-		if(!defecto.isEmpty()) {
 		this.defecto = defecto;
-		}
+		
+	}
+	public LeerFichero() {
 	}
 	
 	/** Funcion que convierte el csv a comensales */
