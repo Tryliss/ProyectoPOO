@@ -106,4 +106,12 @@ public class Comensal extends DatosPersonales{
 		vetados.remove(comensal);
 	}
 
+
+
+	public String toString() {
+		return super.getIdentificador()+":"+super.getNombre()+" "+super.getApellidos();
+	}
+	
+	
+
 }

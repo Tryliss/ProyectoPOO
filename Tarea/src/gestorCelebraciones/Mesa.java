@@ -43,6 +43,9 @@ public abstract class Mesa {
 	public void setLlaveMesa(String llaveMesa) {
 		this.llaveMesa = llaveMesa;
 	}
+	public ArrayList<Comensal> getComensalesMesa() {
+		return comensalesMesa;
+	}
 	/** Metodo abstracto que añade comensales a una mesa */
 	public abstract void annadirComensales(Comensal comensal);
 	/** Metodo abstracto que elimina comensales a una mesa */
