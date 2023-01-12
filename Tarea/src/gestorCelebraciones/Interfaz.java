@@ -27,6 +27,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class Interfaz {
 	LeerFichero inv;
+	Evento evento;
 	private JFrame frame;
 
 	/**
@@ -64,61 +65,108 @@ public class Interfaz {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, "name_23859060990900");
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(254, 367, 628, 148);
-		layeredPane.add(panel);
-		panel.setLayout(new CardLayout(0, 0));
+		//Mesas
+		//Panel contenedor
+		JPanel panel_mesas = new JPanel();
+		panel_mesas.setBounds(254, 367, 628, 148);
+		layeredPane.add(panel_mesas);
+		panel_mesas.setLayout(new CardLayout(0, 0));
 		
-		JList<Mesa> Mesas = new JList();
-		panel.add(Mesas, "name_27373302580800");
+		//Lo hacemos scrolleable
+		JScrollPane scroll_mesas = new JScrollPane();
+		panel_mesas.add(scroll_mesas, "name_1537297494920100");
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(21, 136, 958, 189);
-		layeredPane.add(panel_1);
-		panel_1.setLayout(new CardLayout(0, 0));
+		//Creamos y añadimos la Jlist
+		JList Mesas = new JList();
+		scroll_mesas.setViewportView(Mesas);
 		
+		//Invitados
+		//Panel contenedor
+		JPanel panel_invitados = new JPanel();
+		panel_invitados.setBounds(21, 136, 958, 189);
+		layeredPane.add(panel_invitados);
+		panel_invitados.setLayout(new CardLayout(0, 0));
+		
+		//Lo hacemos scrolleable
+		JScrollPane scroll_invitados = new JScrollPane();
+		panel_invitados.add(scroll_invitados, "name_1537261665385400");
+		
+		//Creamos y añadimos la JList
 		JList Invitados = new JList();
-		panel_1.add(Invitados, "name_27378543164600");
+		scroll_invitados.setViewportView(Invitados);
 		
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(21, 563, 958, 113);
-		layeredPane.add(panel_2);
-		panel_2.setLayout(new CardLayout(0, 0));
 		
-		JList<?> ComensalesPorMesa = new JList();
-		panel_2.add(ComensalesPorMesa, "name_27381419497300");
+		//Comensales por mesa
+		//Panel contenedor
+		JPanel panel_comensalesMesa = new JPanel();
+		panel_comensalesMesa.setBounds(21, 563, 958, 113);
+		layeredPane.add(panel_comensalesMesa);
+		panel_comensalesMesa.setLayout(new CardLayout(0, 0));
 		
-		JButton btnNewButton = new JButton(" Editar Invitado");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\oiram\\git\\ProyectoPOO\\Tarea\\icons8-editar-32.png"));
-		btnNewButton.addActionListener(new ActionListener() {
+		//Lo hacemos scrolleable
+		JScrollPane scrollPane_comensalesMesa = new JScrollPane();
+		panel_comensalesMesa.add(scrollPane_comensalesMesa, "name_1537393592468800");
+		
+		//Creamos y añadimos la JList
+		JList ComensalesMesa = new JList();
+		scrollPane_comensalesMesa.setViewportView(ComensalesMesa);
+		
+		//Selection Listeners
+		//Mesas
+		Mesas.addListSelectionListener(new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e) {
+				ArrayList<Comensal> comensales=((Mesa)Mesas.getSelectedValue()).getComensalesMesa();
+				ListModel<Comensal> modeloComensales = new AbstractListModel<Comensal>() {
+				    /**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+					public int getSize() { return comensales.size(); }
+				    public Comensal getElementAt(int i) { return comensales.get(i); }
+				};
+				ComensalesMesa.setModel(modeloComensales);
+				
+			}
+			
+		});
+		
+		//Botones
+		//Abre una nueva pestaña que permite editar las propiedades un invitado TODO
+		JButton editar_invitados = new JButton(" Editar Invitado");
+		editar_invitados.setIcon(new ImageIcon("C:\\Users\\oiram\\git\\ProyectoPOO\\Tarea\\icons8-editar-32.png"));
+		editar_invitados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(727, 33, 77, 76);
-		layeredPane.add(btnNewButton);
+		editar_invitados.setBounds(727, 33, 77, 76);
+		layeredPane.add(editar_invitados);
 		
-		JButton btnNewButton_1 = new JButton("Borrar");
-		btnNewButton_1.setBounds(814, 33, 77, 76);
-		layeredPane.add(btnNewButton_1);
+		//Elimina un invitado de la lista TODO
+		JButton borrar_invitados = new JButton("Borrar");
+		borrar_invitados.setBounds(814, 33, 77, 76);
+		layeredPane.add(borrar_invitados);
 		
-		JButton btnNewButton_1_1 = new JButton("Guardar");
-		btnNewButton_1_1.setBounds(901, 33, 77, 76);
-		layeredPane.add(btnNewButton_1_1);
+		//Abre nueva pestaña que permite añadir nuevos invitados y los añade al csv TODO
+		JButton add_invitados = new JButton("Añadir");
+		add_invitados.setBounds(901, 33, 77, 76);
+		layeredPane.add(add_invitados);
 		
-		JButton btnNewButton_1_2 = new JButton("Editar Mesa");
-		btnNewButton_1_2.setBounds(902, 408, 77, 76);
-		layeredPane.add(btnNewButton_1_2);
-		
-		JButton Asignar = new JButton("Asignar");
-		Asignar.setBounds(110, 435, 127, 23);
-		
+		//Abre nueva pestaña que permite cambiar el nombre de las mesas TODO
+		JButton editar_mesa = new JButton("Editar Mesa");
+		editar_mesa.setBounds(902, 408, 77, 76);
+		layeredPane.add(editar_mesa);
 		
 		
-		layeredPane.add(Asignar);
-		Asignar.addActionListener(new ActionListener() {
+		//Asigna los comensales a las mesas
+		JButton asignar = new JButton("Asignar");
+		asignar.setBounds(110, 435, 127, 23);
+			//Funcionalidad
+		layeredPane.add(asignar);
+		asignar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		       Evento evento=Evento.getInstance(inv.getComensales());
+		    if(evento==null) {
+		       evento=Evento.getInstance(inv.getComensales());
 		        
 					ArrayList<Mesa> asignados=evento.Asigna();
 					ListModel<Mesa> modeloAsignados = new AbstractListModel<Mesa>() {
@@ -129,74 +177,69 @@ public class Interfaz {
 						public int getSize() { return asignados.size(); }
 					    public Mesa getElementAt(int i) { return asignados.get(i); }
 					};
-					Mesas.removeAll();
-					Mesas.setModel(modeloAsignados);
-				
+					Mesas.setModel(modeloAsignados);		
+		    }
 		    }
 		});
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(24, 712, 174, 23);
-		layeredPane.add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(220, 712, 174, 23);
-		layeredPane.add(panel_4);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 11, 977, 516);
-		layeredPane.add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 543, 973, 220);
-		layeredPane.add(separator_1);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(21, 336, 968, 189);
-		layeredPane.add(separator_2);
-		
-		JButton btnNewButton_1_3_1 = new JButton("Generar PDF");
-		btnNewButton_1_3_1.setBounds(902, 687, 77, 76);
-		layeredPane.add(btnNewButton_1_3_1);
-		
-		JList list_3 = new JList();
-		list_3.setBounds(73, 378, 1, 1);
-		layeredPane.add(list_3);
-		
-		JButton CargarFichero = new JButton("Cargar");
-		CargarFichero.setBounds(21, 33, 77, 76);
-		layeredPane.add(CargarFichero);
-		CargarFichero.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        inv=new LeerFichero();
-		        try {
-					inv.formalizar();
-					ListModel<Comensal> modeloInvitados = new AbstractListModel<Comensal>() {
-					    public int getSize() { return inv.getComensales().size(); }
-					    public Comensal getElementAt(int i) { return inv.getComensales().get(i); }
+		//Carga un fichero csv
+		JButton cargar_fichero = new JButton("Cargar");
+		cargar_fichero.setBounds(21, 33, 77, 76);
+		layeredPane.add(cargar_fichero);
+			//Funcionalidad
+		cargar_fichero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(inv==null) {
+					inv=new LeerFichero();
+					try {
+						inv.formalizar();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					ArrayList<Comensal> invitados=inv.getComensales();
+					ListModel<Comensal> modeloAsignados = new AbstractListModel<Comensal>() {
+					    /**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+						public int getSize() { return invitados.size(); }
+					    public Comensal getElementAt(int i) { return invitados.get(i); }
 					};
-					Invitados.setModel(modeloInvitados);
-				} catch (IOException e1) {
-					e1.printStackTrace();
+					Invitados.setModel(modeloAsignados);
 				}
-		    }
-		});
-		Mesas.addListSelectionListener(new ListSelectionListener() {
-		    public void valueChanged(ListSelectionEvent e) {
-		    	Object selected = (Mesa)Mesas.getSelectedValue(); 
-		    	ComensalesPorMesa.setModel( new AbstractListModel() {
-		    	    /**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
-					public int getSize() { return ((Mesa)selected).comensalesMesa.size();}
-		    	    public Object getElementAt(int i) { return ((Mesa)selected).comensalesMesa.get(i); }
-		    	});
-		    	
-		    }
-
+				
+			}
+			
 			
 		});
+		
+		//Genera un fichero .pdf TODO
+		JButton generar_pdf = new JButton("Generar PDF");
+		generar_pdf.setBounds(901, 714, 77, 76);
+		layeredPane.add(generar_pdf);
+		
+		//Contadores TODO
+		
+		JPanel contador_comensales = new JPanel();
+		contador_comensales.setBounds(24, 712, 174, 23);
+		layeredPane.add(contador_comensales);
+		
+		JPanel contador_sillas = new JPanel();
+		contador_sillas.setBounds(220, 712, 174, 23);
+		layeredPane.add(contador_sillas);
+		
+		//Separadores (Esteticos)
+		
+		JSeparator separador_superior = new JSeparator();
+		separador_superior.setBounds(10, 543, 973, 220);
+		layeredPane.add(separador_superior);
+		
+		JSeparator separador_inferior = new JSeparator();
+		separador_inferior.setBounds(21, 336, 968, 189);
+		layeredPane.add(separador_inferior);
+		
+		
 		
 	}
 	
