@@ -4,12 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;
+import java.awt.Component;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JTextPane;
 import javax.swing.ListModel;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -146,6 +149,14 @@ public class Interfaz {
 		JButton borrar_invitados = new JButton("Borrar");
 		borrar_invitados.setBounds(814, 33, 77, 76);
 		layeredPane.add(borrar_invitados);
+			//Funcionalidad
+		borrar_invitados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object seleccionInvitados= Invitados.getSelectedValue();
+				((modeloInvitados)Invitados).remove(seleccionInvitados);	
+			}
+			
+		});
 		
 		//Abre nueva pestaña que permite añadir nuevos invitados y los añade al csv TODO
 		JButton add_invitados = new JButton("Añadir");
@@ -168,16 +179,8 @@ public class Interfaz {
 		    if(evento==null) {
 		       evento=Evento.getInstance(inv.getComensales());
 		        
-					ArrayList<Mesa> asignados=evento.Asigna();
-					ListModel<Mesa> modeloAsignados = new AbstractListModel<Mesa>() {
-					    /**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
-						public int getSize() { return asignados.size(); }
-					    public Mesa getElementAt(int i) { return asignados.get(i); }
-					};
-					Mesas.setModel(modeloAsignados);		
+					ArrayList<Mesa> asignadas=evento.Asigna();
+					Mesa.add(asignadas);
 		    }
 		    }
 		});
@@ -198,7 +201,7 @@ public class Interfaz {
 						e1.printStackTrace();
 					}
 					ArrayList<Comensal> invitados=inv.getComensales();
-					ListModel<Comensal> modeloAsignados = new AbstractListModel<Comensal>() {
+					ListModel<Comensal> modeloInvitados = new AbstractListModel<Comensal>() {
 					    /**
 						 * 
 						 */
@@ -206,7 +209,8 @@ public class Interfaz {
 						public int getSize() { return invitados.size(); }
 					    public Comensal getElementAt(int i) { return invitados.get(i); }
 					};
-					Invitados.setModel(modeloAsignados);
+					Invitados.setModel(modeloInvitados);
+					
 				}
 				
 			}

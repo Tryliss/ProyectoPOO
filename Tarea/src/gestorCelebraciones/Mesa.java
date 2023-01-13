@@ -50,6 +50,10 @@ public abstract class Mesa {
 	public abstract void annadirComensales(Comensal comensal);
 	/** Metodo abstracto que elimina comensales a una mesa */
 	public abstract void eliminarComensales(Comensal comensal);
+	protected static void add(ArrayList<Mesa> asignadas) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }
