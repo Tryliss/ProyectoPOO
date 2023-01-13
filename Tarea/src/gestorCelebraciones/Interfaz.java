@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;
-import java.awt.Component;
-
 import javax.swing.JLayeredPane;
 import javax.swing.JTextPane;
 import javax.swing.ListModel;
@@ -179,8 +177,16 @@ public class Interfaz {
 		    if(evento==null) {
 		       evento=Evento.getInstance(inv.getComensales());
 		        
-					ArrayList<Mesa> asignadas=evento.Asigna();
-					Mesa.add(asignadas);
+					ArrayList<Mesa> asignados=evento.Asigna();
+					modeloAsignadas = new AbstractListModel<Mesa>() {
+					    /**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+						public int getSize() { return asignados.size(); }
+					    public Mesa getElementAt(int i) { return asignados.get(i); }
+					};
+					Mesas.setModel(modeloAsignados);		
 		    }
 		    }
 		});
