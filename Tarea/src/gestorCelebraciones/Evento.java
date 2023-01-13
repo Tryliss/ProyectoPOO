@@ -21,7 +21,7 @@ public class Evento{
 	ArrayList<Mesa> 	completo		= 	new ArrayList<Mesa>();
 
 	/** Constructor privado por singleton */
-	private Evento(ArrayList<Comensal> asignados) {
+	public Evento(ArrayList<Comensal> asignados) {
 		this.asignados = asignados;
 	}
 	

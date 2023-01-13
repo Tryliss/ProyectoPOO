@@ -9,6 +9,7 @@ import javax.swing.JTextPane;
 import javax.swing.ListModel;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.AbstractButton;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -29,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 public class Interfaz {
 	LeerFichero inv;
 	Evento evento;
+	DefaultListModel<Comensal> model = new DefaultListModel<Comensal>();
 	private JFrame frame;
 
 	/**
@@ -92,8 +94,9 @@ public class Interfaz {
 		JScrollPane scroll_invitados = new JScrollPane();
 		panel_invitados.add(scroll_invitados, "name_1537261665385400");
 		
+		//Creamos lista
 		//Creamos y añadimos la JList
-		JList Invitados = new JList();
+		JList<Comensal> Invitados = new JList<Comensal>(model);
 		scroll_invitados.setViewportView(Invitados);
 		
 		
@@ -116,20 +119,21 @@ public class Interfaz {
 		//Selection Listeners
 		//Mesas
 		Mesas.addListSelectionListener(new ListSelectionListener(){
-			public void valueChanged(ListSelectionEvent e) {
-				ArrayList<Comensal> comensales=((Mesa)Mesas.getSelectedValue()).getComensalesMesa();
-				ListModel<Comensal> modeloComensales = new AbstractListModel<Comensal>() {
-				    /**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
-					public int getSize() { return comensales.size(); }
-				    public Comensal getElementAt(int i) { return comensales.get(i); }
-				};
-				ComensalesMesa.setModel(modeloComensales);
-				
-			}
-			
+		    public void valueChanged(ListSelectionEvent e) {
+		        if (e.getValueIsAdjusting()) {
+		            return;
+		        }
+		        Mesa selectedMesa = (Mesa) Mesas.getSelectedValue();
+		        if(selectedMesa == null) {
+		            return;
+		        }
+		        ArrayList<Comensal> comensales = new ArrayList<Comensal>(selectedMesa.getComensalesMesa());
+		        DefaultListModel<Comensal> modeloComensales = new DefaultListModel<Comensal>();
+		        for(Comensal c: comensales) {
+		            modeloComensales.addElement(c);
+		        }
+		        ComensalesMesa.setModel(modeloComensales);
+		    }
 		});
 		
 		//Botones
@@ -149,11 +153,19 @@ public class Interfaz {
 		layeredPane.add(borrar_invitados);
 			//Funcionalidad
 		borrar_invitados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Object seleccionInvitados= Invitados.getSelectedValue();
-				((modeloInvitados)Invitados).remove(seleccionInvitados);	
-			}
-			
+		    public void actionPerformed(ActionEvent e) {
+		        // Get the selected index in the JList
+		        int selectedIndex = Invitados.getSelectedIndex();
+		        // If an item is selected
+		        if (Invitados.getModel().getSize() > 0 && selectedIndex != -1) {
+		            // Get the ListModel of the JList
+		            DefaultListModel model = (DefaultListModel) Invitados.getModel();
+		            // Remove the item at the selected index
+		            model.remove(selectedIndex);
+		            inv.getComensales().remove(selectedIndex);
+		           
+		        }  
+		    }
 		});
 		
 		//Abre nueva pestaña que permite añadir nuevos invitados y los añade al csv TODO
@@ -170,26 +182,21 @@ public class Interfaz {
 		//Asigna los comensales a las mesas
 		JButton asignar = new JButton("Asignar");
 		asignar.setBounds(110, 435, 127, 23);
-			//Funcionalidad
 		layeredPane.add(asignar);
+
 		asignar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    if(evento==null) {
-		       evento=Evento.getInstance(inv.getComensales());
-		        
-					ArrayList<Mesa> asignados=evento.Asigna();
-					modeloAsignadas = new AbstractListModel<Mesa>() {
-					    /**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
-						public int getSize() { return asignados.size(); }
-					    public Mesa getElementAt(int i) { return asignados.get(i); }
-					};
-					Mesas.setModel(modeloAsignados);		
-		    }
+		       
+		            evento=new Evento(inv.getComensales());
+		            ArrayList<Mesa> asignados=evento.Asigna();
+		            DefaultListModel<Mesa> model = new DefaultListModel<Mesa>();
+		            for(Mesa m:asignados) {
+		                model.addElement(m);
+		            Mesas.setModel(model);
+		        }
 		    }
 		});
+
 		
 		//Carga un fichero csv
 		JButton cargar_fichero = new JButton("Cargar");
@@ -197,31 +204,23 @@ public class Interfaz {
 		layeredPane.add(cargar_fichero);
 			//Funcionalidad
 		cargar_fichero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(inv==null) {
-					inv=new LeerFichero();
-					try {
-						inv.formalizar();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					ArrayList<Comensal> invitados=inv.getComensales();
-					ListModel<Comensal> modeloInvitados = new AbstractListModel<Comensal>() {
-					    /**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
-						public int getSize() { return invitados.size(); }
-					    public Comensal getElementAt(int i) { return invitados.get(i); }
-					};
-					Invitados.setModel(modeloInvitados);
-					
-				}
-				
-			}
-			
-			
+		    public void actionPerformed(ActionEvent e) {
+		        if(inv==null) {
+		            inv=new LeerFichero();
+		            try {
+		                inv.formalizar();
+		            } catch (IOException e1) {
+		                // TODO Auto-generated catch block
+		                e1.printStackTrace();
+		            }
+		            ArrayList<Comensal> invitados=inv.getComensales();
+		            DefaultListModel<Comensal> model = new DefaultListModel<Comensal>();
+		            for(Comensal c:invitados) {
+		                model.addElement(c);
+		            }
+		            Invitados.setModel(model);
+		        }
+		    }
 		});
 		
 		//Genera un fichero .pdf TODO
