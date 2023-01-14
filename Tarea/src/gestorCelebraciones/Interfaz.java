@@ -30,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 public class Interfaz {
 	LeerFichero inv;
 	Evento evento;
+	ArrayList<Mesa> asignados;
 	DefaultListModel<Comensal> model = new DefaultListModel<Comensal>();
 	private JFrame frame;
 
@@ -188,7 +189,7 @@ public class Interfaz {
 		    public void actionPerformed(ActionEvent e) {
 		       
 		            evento=new Evento(inv.getComensales());
-		            ArrayList<Mesa> asignados=evento.Asigna();
+		            asignados=evento.Asigna();
 		            DefaultListModel<Mesa> model = new DefaultListModel<Mesa>();
 		            for(Mesa m:asignados) {
 		                model.addElement(m);
@@ -227,6 +228,15 @@ public class Interfaz {
 		JButton generar_pdf = new JButton("Generar PDF");
 		generar_pdf.setBounds(901, 714, 77, 76);
 		layeredPane.add(generar_pdf);
+		generar_pdf.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	try {
+					PDFGenerator.generatePDF(asignados);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}		    }
+		    });
 		
 		//Contadores TODO
 		

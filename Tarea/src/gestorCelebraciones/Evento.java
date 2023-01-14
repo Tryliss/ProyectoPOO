@@ -36,6 +36,10 @@ public class Evento{
 	
 	
 	
+	public ArrayList<Comensal> getAsignados() {
+		return asignados;
+	}
+
 	/**Asigna y devuelve lista comensales y mesas */
 	
 	public ArrayList<Mesa> Asigna() {
