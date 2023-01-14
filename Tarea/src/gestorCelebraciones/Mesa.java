@@ -54,6 +54,10 @@ public abstract class Mesa {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public String toString() {
+		return "llaveMesa=" + llaveMesa + ", tipoMesa=" + this.getClass().getSimpleName() + "]";
+	}
 
 	
 }
