@@ -7,7 +7,7 @@ import java.util.Collections;
 /** Clase evento con patron de diseño singleton */
 public class Evento{
 	/** Singleton */
-	private static Evento instance;
+	
 	
 	/** Arraylist de comensales a asignar */
 	ArrayList<Comensal> asignados		=	new ArrayList<Comensal>();
@@ -24,15 +24,7 @@ public class Evento{
 	public Evento(ArrayList<Comensal> asignados) {
 		this.asignados = asignados;
 	}
-	
-	/** "Constructor" Singleton */
-	public static Evento getInstance(ArrayList<Comensal> asignados) {
-        if (instance == null) {
-            instance = new Evento(asignados);
-        }
-        
-        return instance;
-    }
+
 	
 	
 	

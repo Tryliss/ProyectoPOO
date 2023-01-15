@@ -12,14 +12,16 @@ public class LeerFichero {
 	private String line 	=	"";  
 	private String splitBy 	= 	";"; 
 	ArrayList<Comensal> comensales	= new ArrayList<Comensal>();
-	
+	private static LeerFichero instance;
 	/** Constructor leer fichero */
-	public LeerFichero(String defecto) {
-		this.defecto = defecto;
-		
-	}
 	public LeerFichero() {
 	}
+	
+	public static LeerFichero getInstance() {
+		 if (instance == null) new LeerFichero();
+	        return instance;
+    }
+	
 	
 	/** Funcion que convierte el csv a comensales */
 	public void formalizar() throws IOException{
