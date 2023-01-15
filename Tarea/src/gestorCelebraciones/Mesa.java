@@ -51,12 +51,12 @@ public abstract class Mesa {
 	/** Metodo abstracto que elimina comensales a una mesa */
 	public abstract void eliminarComensales(Comensal comensal);
 	protected static void add(ArrayList<Mesa> asignadas) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
 	public String toString() {
-		return "llaveMesa=" + llaveMesa + ", tipoMesa=" + this.getClass().getSimpleName() + "]";
+		return "Llave de Mesa: " + llaveMesa + ", Tipo de Mesa: " + this.getClass().getSimpleName();
 	}
 
 	

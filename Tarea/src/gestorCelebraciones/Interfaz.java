@@ -71,8 +71,8 @@ public class Interfaz {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\oiram\\git\\ProyectoPOO\\Tarea\\Img\\celebracion.png"));
+		frame = new JFrame("Celebraciones Magdalena");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("Img/celebracion.png"));
 		frame.getContentPane().setBackground(new Color(241, 237, 222));
 		frame.setBounds(100, 100, 1015, 837);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,7 +156,7 @@ public class Interfaz {
 		});
 		
 		
-		
+		//Botones
 		//Elimina un invitado de la lista 
 		JButton borrar_invitados = new JButton("");
 		borrar_invitados.setIcon(new ImageIcon("Img/eliminar.png"));
@@ -180,6 +180,7 @@ public class Interfaz {
 		        }  
 		    }
 		});
+		borrar_invitados.setToolTipText("Permite cambiar eliminar a un invitado de la lista");
 		
 		
 		//Abre nueva pestaña que permite añadir nuevos invitados  
@@ -188,7 +189,7 @@ public class Interfaz {
 		add_invitados.setBackground(new Color(211, 150, 88));
 		add_invitados.setBounds(901, 33, 77, 76);
 		layeredPane.add(add_invitados);
-		
+
 		add_invitados.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	
@@ -304,7 +305,8 @@ public class Interfaz {
 		    	}
 		    }
 		});
-		
+
+		add_invitados.setToolTipText("Permite añadir un invitado a una lista existente");
 		
 		//Abre nueva pestaña que permite cambiar el nombre de las mesas 
 		JButton editar_mesa = new JButton("");
@@ -343,6 +345,7 @@ public class Interfaz {
 		    }
 		    }
 		});
+		editar_mesa.setToolTipText("Permite cambiar el nombre a la mesa");
 		
 
 
@@ -372,7 +375,7 @@ public class Interfaz {
 	        	JOptionPane.showMessageDialog(frame, "No hay invitados", "Error",JOptionPane.ERROR_MESSAGE);}
 		    }
 		});
-
+		asignar.setToolTipText("Ejecuta el algoritmo de asignacion automatico");
 		
 		//Carga un fichero csv
 		JButton cargar_fichero = new JButton("");
@@ -401,6 +404,7 @@ public class Interfaz {
 		        }
 		    }
 		});
+		cargar_fichero.setToolTipText("Carga un fichero .csv");
 		
 		//Genera un fichero .pdf (Prettyfy)
 		JButton generar_pdf = new JButton("");
@@ -420,6 +424,7 @@ public class Interfaz {
 				}
 		    	}
 		    });
+		generar_pdf.setToolTipText("Genera un fichero PDF con la informacion dada");
 		
 		//Separadores (Esteticos)
 		
@@ -485,6 +490,13 @@ public class Interfaz {
 		Comensales_por_mesa_label_2.setFont(new Font("Edwardian Script ITC", Font.PLAIN, 25));
 		Comensales_por_mesa_label_2.setBounds(21, 105, 958, 20);
 		layeredPane.add(Comensales_por_mesa_label_2);
+		
+		JLabel lblNewLabel_2 = new JLabel("Eventos Magdalena");
+		lblNewLabel_2.setForeground(new Color(182, 135, 104));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Edwardian Script ITC", Font.ITALIC, 50));
+		lblNewLabel_2.setBounds(21, 11, 958, 83);
+		layeredPane.add(lblNewLabel_2);
 		Mesas.addListSelectionListener(new ListSelectionListener(){
 		    public void valueChanged(ListSelectionEvent e) {
 		   Mesa index =(Mesa) Mesas.getSelectedValue();
